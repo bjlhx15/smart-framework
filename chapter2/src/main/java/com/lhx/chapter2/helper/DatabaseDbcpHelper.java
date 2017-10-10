@@ -1,29 +1,34 @@
 package com.lhx.chapter2.helper;
 
 import com.lhx.chapter2.util.PropsUtil;
-import com.sun.org.apache.regexp.internal.REUtil;
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ *db链接工具
+ */
 public class DatabaseDbcpHelper {
     private static final Logger log = LoggerFactory.getLogger(DatabaseHelper.class);
 
-    private static final QueryRunner QUERY_RUNNER ;
+    private static final QueryRunner QUERY_RUNNER;
     private static final ThreadLocal<Connection> CONNECTION_HOLDER;
     private static final BasicDataSource DATA_SOURCE;
 
@@ -46,7 +51,7 @@ public class DatabaseDbcpHelper {
         Connection conn = CONNECTION_HOLDER.get();
         if (conn == null) {
             try {
-                conn=DATA_SOURCE.getConnection();
+                conn = DATA_SOURCE.getConnection();
             } catch (SQLException e) {
                 log.error("获取链接失败", e);
             } finally {
@@ -142,8 +147,26 @@ public class DatabaseDbcpHelper {
         Object[] parmas = paramsList.toArray();
         return excuteUpdate(sql, parmas) == 1;
     }
+
     public static <T> boolean deleteEntity(Class<T> entityClass, long id) {
         String sql = "delete from  " + getTableName(entityClass) + " where id=? ";
         return excuteUpdate(sql, id) == 1;
+    }
+
+    public static void excuteSqlFile(String filePath) {
+        String file = "sql/customer_init.sql";
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(file);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String sql;
+        try {
+            while ((sql = reader.readLine()) != null) {
+                if (StringUtils.isNotEmpty(sql)) {
+                    excuteUpdate(sql);
+                }
+            }
+        } catch (IOException e) {
+            log.error("文件读取异常", e);
+            throw new RuntimeException(e);
+        }
     }
 }

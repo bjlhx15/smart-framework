@@ -11,6 +11,10 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -19,6 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * db链接工具
+ */
 public class DatabaseHelper {
     private static final Logger log = LoggerFactory.getLogger(DatabaseHelper.class);
 
@@ -169,5 +176,19 @@ public class DatabaseHelper {
     public static <T> boolean deleteEntity(Class<T> entityClass, long id) {
         String sql = "delete from  " + getTableName(entityClass) + " where id=? ";
         return excuteUpdate(sql, id) == 1;
+    }
+    public static void excuteSqlFile(String filePath) {
+        String file = "sql/customer_init.sql";
+        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(file);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String sql;
+        try {
+            while ((sql = reader.readLine()) != null) {
+                excuteUpdate(sql);
+            }
+        } catch (IOException e) {
+            log.error("文件读取异常", e);
+            throw new RuntimeException(e);
+        }
     }
 }

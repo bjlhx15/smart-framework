@@ -1,5 +1,6 @@
 package com.lhx.chapter2.service;
 
+import com.lhx.chapter2.helper.DatabaseDbcpHelper;
 import com.lhx.chapter2.helper.DatabaseHelper;
 import com.lhx.chapter2.model.Customer;
 
@@ -18,7 +19,7 @@ public class CustomService {
      */
     public List<Customer> getCustomerList(String keyword) {
         String sql="select * from customer";
-        return DatabaseHelper.queryEntityList(Customer.class,sql);
+        return DatabaseDbcpHelper.queryEntityList(Customer.class,sql);
     }
 
     /**
@@ -29,7 +30,7 @@ public class CustomService {
      */
     public Customer getCustomer(long id) {
         String sql="select * from customer where id =?";
-        return DatabaseHelper.queryEntity(Customer.class,sql,id);
+        return DatabaseDbcpHelper.queryEntity(Customer.class,sql,id);
     }
 
     /**
@@ -39,7 +40,7 @@ public class CustomService {
      * @return
      */
     public boolean createCustomer(Map<String, Object> filedMap) {
-        return DatabaseHelper.insertEntity(Customer.class,filedMap);
+        return DatabaseDbcpHelper.insertEntity(Customer.class,filedMap);
     }
 
     /**
@@ -50,8 +51,7 @@ public class CustomService {
      * @return
      */
     public boolean updateCustomer(long id, Map<String, Object> filedMap) {
-
-        return DatabaseHelper.updateEntity(Customer.class,id,filedMap);
+        return DatabaseDbcpHelper.updateEntity(Customer.class,id,filedMap);
     }
 
     /**
@@ -61,6 +61,6 @@ public class CustomService {
      * @return
      */
     public boolean deleteCustomer(long id) {
-        return DatabaseHelper.deleteEntity(Customer.class,id);
+        return DatabaseDbcpHelper.deleteEntity(Customer.class,id);
     }
 }
