@@ -6,7 +6,7 @@
     <groupId>com.lhx.smart-framework</groupId>
     <version>1.0-SNAPSHOT</version>
     <artifactId>chapter3</artifactId>
-    <packaging>pom</packaging>
+    <packaging>war</packaging>
     <dependencies>
         <dependency>
             <groupId>com.lhx.smart-framework</groupId>

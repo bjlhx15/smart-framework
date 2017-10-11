@@ -1,4 +1,4 @@
-package com.lhx.chapter2.util;
+package com.lhx.smart.framework.util;
 
 
 import org.apache.commons.lang3.StringUtils;

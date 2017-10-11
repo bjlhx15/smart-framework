@@ -7,6 +7,7 @@
     <groupId>com.lhx.smart-framework</groupId>
     <artifactId>smart-framework</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <dependencies>
         <!--slf4j 日志 默认使用log4j-->
         <dependency>

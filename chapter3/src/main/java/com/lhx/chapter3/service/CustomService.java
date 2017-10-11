@@ -1,7 +1,8 @@
-package com.lhx.chapter2.service;
+package com.lhx.chapter3.service;
 
-import com.lhx.chapter2.helper.DatabaseDbcpHelper;
-import com.lhx.chapter2.model.Customer;
+import com.lhx.chapter3.helper.DatabaseDbcpHelper;
+import com.lhx.chapter3.model.Customer;
+import com.lhx.smart.framework.annotation.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 /**
  * 提供用户服务
  */
+@Service
 public class CustomService {
     /**
      * 获取用户列表

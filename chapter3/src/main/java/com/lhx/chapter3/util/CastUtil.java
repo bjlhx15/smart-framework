@@ -1,4 +1,4 @@
-package com.lhx.chapter2.util;
+package com.lhx.chapter3.util;
 
 
 import org.apache.commons.lang3.StringUtils;

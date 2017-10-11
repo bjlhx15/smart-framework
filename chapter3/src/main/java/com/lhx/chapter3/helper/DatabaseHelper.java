@@ -1,6 +1,6 @@
-package com.lhx.chapter2.helper;
+package com.lhx.chapter3.helper;
 
-import com.lhx.chapter2.util.PropsUtil;
+import com.lhx.chapter3.util.PropsUtil;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;

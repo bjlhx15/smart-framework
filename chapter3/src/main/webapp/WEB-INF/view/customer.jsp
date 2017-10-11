@@ -21,7 +21,7 @@
         <td>邮件</td>
         <td>操作</td>
     </tr>
-    <c:forEach var="item" items="${customerList}">
+    <c:forEach var="item" items="${customerlist}">
         <tr>
             <td>${item.name}</td>
             <td>${item.contact}</td>
