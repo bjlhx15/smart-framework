@@ -11,7 +11,9 @@ import com.lhx.smart.framework.bean.View;
 
 import java.util.List;
 import java.util.Map;
-
+/*
+*处理客户管理相关请求
+*/
 @Controller
 public class CustomerController {
     @Inject
