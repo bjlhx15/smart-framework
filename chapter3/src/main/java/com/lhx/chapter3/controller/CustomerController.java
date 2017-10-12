@@ -11,8 +11,9 @@ import com.lhx.smart.framework.bean.View;
 
 import java.util.List;
 import java.util.Map;
+
 /*
-*处理客户管理相关请求
+ * 处理客户管理相关请求
 */
 @Controller
 public class CustomerController {
@@ -36,6 +37,7 @@ public class CustomerController {
     public View create(Param param) {
         return new View("customer_create.jsp");
     }
+
     @Action("post:/customer_create")
     public Data createSumbit(Param param) {
         Map<String, Object> paramMap = param.getParamMap();
@@ -43,18 +45,18 @@ public class CustomerController {
         return new Data(result);
     }
 
-
     @Action("get:/customer_edit")
     public View edit(Param param) {
         long id = param.getLong("id");
         Customer customer = customService.getCustomer(id);
         return new View("customer_edit.jsp").addModel("customer", customer);
     }
+
     @Action("post:/customer_edit")
     public Data editSumbit(Param param) {
         long id = param.getLong("id");
         Map<String, Object> paramMap = param.getParamMap();
-        boolean result = customService.updateCustomer(id,paramMap);
+        boolean result = customService.updateCustomer(id, paramMap);
         return new Data(result);
     }
 
