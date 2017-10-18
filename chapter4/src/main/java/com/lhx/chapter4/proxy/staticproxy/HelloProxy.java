@@ -5,11 +5,9 @@ import com.lhx.chapter4.proxy.HelloImpl;
 
 public class HelloProxy implements Hello {
     private Hello hello;
-
     public HelloProxy() {
         this.hello = new HelloImpl();
     }
-
     @Override
     public void say(String name) {
         before();
