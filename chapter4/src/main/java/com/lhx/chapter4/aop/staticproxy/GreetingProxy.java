@@ -17,6 +17,11 @@ public class GreetingProxy implements Greeting {
     }
 
     @Override
+    public void sayHelloNoPreSub(String name) {
+
+    }
+
+    @Override
     public void sayHelloThrows(String name) {
 
     }

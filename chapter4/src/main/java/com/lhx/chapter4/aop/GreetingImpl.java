@@ -12,6 +12,11 @@ public class GreetingImpl implements Greeting {
     }
 
     @Override
+    public void sayHelloNoPreSub(String name) {
+        System.out.println("hello " + name);
+    }
+
+    @Override
     public void sayHelloThrows(String name) {
         System.out.println("hello " + name);
         throw new RuntimeException("Error");

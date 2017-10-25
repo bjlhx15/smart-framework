@@ -10,6 +10,11 @@ public class GreetingGood implements Greeting {
         System.out.println("hello " + name);
     }
 
+    @Override
+    public void sayHelloNoPreSub(String name) {
+
+    }
+
     public void goodMorning(String name) {
         System.out.println("goodMorning " + name);
     }
