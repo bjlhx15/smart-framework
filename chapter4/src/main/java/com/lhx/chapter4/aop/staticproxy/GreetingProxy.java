@@ -16,6 +16,11 @@ public class GreetingProxy implements Greeting {
         after();
     }
 
+    @Override
+    public void sayHelloThrows(String name) {
+
+    }
+
     private void before() {
         System.out.println("before");
     }
