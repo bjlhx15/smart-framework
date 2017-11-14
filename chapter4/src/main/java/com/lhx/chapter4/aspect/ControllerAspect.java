@@ -1,11 +1,14 @@
 package com.lhx.chapter4.aspect;
 
+import com.lhx.smart.framework.annotation.Aspect;
+import com.lhx.smart.framework.annotation.Controller;
 import com.lhx.smart.framework.proxy.AspectProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Method;
 
+@Aspect(Controller.class)
 public class ControllerAspect extends AspectProxy {
     private  static  final Logger logger = LoggerFactory.getLogger(ControllerAspect.class);
     private long begin;
