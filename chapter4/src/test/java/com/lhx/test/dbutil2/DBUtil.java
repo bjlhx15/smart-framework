@@ -1,8 +1,7 @@
-package com.lhx.test;
+package com.lhx.test.dbutil2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBUtil {
     private static final String driver = "com.mysql.jdbc.Driver";
@@ -10,25 +9,35 @@ public class DBUtil {
     private static final String username = "root";
     private static final String password = "root";
 
-    private static Connection conn = null;
+    private static ThreadLocal<Connection> conContainer = new ThreadLocal<>();
 
     public static Connection getConnection() {
+        Connection conn = conContainer.get();
         try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
+            if (conn == null) {
+                Class.forName(driver);
+                conn = DriverManager.getConnection(url, username, password);
+            }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            conContainer.set(conn);
         }
         return conn;
     }
 
     public static void colseConnection() {
+        Connection conn = conContainer.get();
         try {
-            if(conn!=null){
+            if (conn != null) {
                 conn.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        finally {
+            conContainer.remove();
         }
     }
 }

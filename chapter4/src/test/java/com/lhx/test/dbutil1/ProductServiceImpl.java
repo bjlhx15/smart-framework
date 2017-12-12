@@ -1,9 +1,7 @@
-package com.lhx.test;
+package com.lhx.test.dbutil1;
 
-import javax.xml.transform.Source;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,7 +11,7 @@ public class ProductServiceImpl implements ProductService {
     private static final String Insert_Log_sql = "insert into log(crerated,description)values(?,?)";
 
     @Override
-    public void updateProductPrice(Long productId, int price) {
+    public void updateProductPrice(long productId, int price) {
         try {
             Connection connection = DBUtil.getConnection();
             connection.setAutoCommit(false);
